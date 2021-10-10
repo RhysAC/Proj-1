@@ -11,13 +11,18 @@ public:
 	void Init(RenderWindow& window);
 	void Render();
 	void Update(float elapsed, RenderWindow& window);
-	void Move(float elapsed);
-	void LookAtMouse(RenderWindow& window);
 
 private:
+	void Move(float elapsed);
+	void Aim(RenderWindow& window);
+	void LookAtMouse(RenderWindow& window);
+
 	Sprite playerSpr;
 	Texture playerSprTex;
+	Vector2f mousePos;
+	Vector2f aimDirNorm;
 	RenderWindow *pWindow = nullptr;
+
 };
 
 
