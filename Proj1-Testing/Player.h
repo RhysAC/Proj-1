@@ -15,10 +15,8 @@ public:
 	void LookAtMouse(RenderWindow& window);
 
 private:
-	Sprite gunSprite;
-	Sprite baseSprite;
-	Texture gunSpriteTex;
-	Texture baseSpriteTex;
+	Sprite playerSpr;
+	Texture playerSprTex;
 	RenderWindow *pWindow = nullptr;
 };
 

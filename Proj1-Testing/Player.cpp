@@ -17,31 +17,21 @@ Player::Player(){}
 void Player::Init(RenderWindow& window) 
 {
 	pWindow = &window;
-	if (!gunSpriteTex.loadFromFile("data/TankGun.png"))
+	if (!playerSprTex.loadFromFile("data/Player-Sprite-Test.png"))
 		assert(false);
-	gunSpriteTex.setSmooth(true);
-	gunSprite.setTexture(gunSpriteTex);
-	gunSprite.setScale(1.5, 1.5);
+	playerSprTex.setSmooth(true);
+	playerSpr.setTexture(playerSprTex);
+	playerSpr.setScale(1, 1);
 	IntRect texR(0, 0, 200, 200);
-	gunSprite.setTextureRect(texR);
-	gunSprite.setOrigin(texR.width / 2.f, texR.height / 2.f);
-	gunSprite.setPosition(300, 300);
-
-	if (!baseSpriteTex.loadFromFile("data/TankBase.png"))
-		assert(false);
-	baseSpriteTex.setSmooth(true);
-	baseSprite.setTexture(baseSpriteTex);
-	baseSprite.setScale(1.5, 1.5);
-	IntRect baseTexR(0, 0, 200, 200);
-	baseSprite.setTextureRect(baseTexR);
-	baseSprite.setOrigin(baseTexR.width / 2.f, baseTexR.height / 2.f);
-	baseSprite.setPosition(300, 300);
+	playerSpr.setTextureRect(texR);
+	playerSpr.setOrigin(texR.width / 2.f, texR.height / 2.f);
+	playerSpr.setPosition(300, 300);
 
 }
 
 void Player::Move(float elapsed) 
 {
-	Vector2f pos = gunSprite.getPosition();
+	Vector2f pos = playerSpr.getPosition();
 
 	if (Keyboard::isKeyPressed(Keyboard::W)) 
 	{
@@ -60,8 +50,7 @@ void Player::Move(float elapsed)
 		pos.x += 200.f * elapsed;
 	}
 
-	baseSprite.setPosition(pos.x, pos.y + 15);
-	gunSprite.setPosition(pos);
+	playerSpr.setPosition(pos);
 }
 
 void Player::Update(float elapsed, RenderWindow& window)
@@ -72,13 +61,12 @@ void Player::Update(float elapsed, RenderWindow& window)
 
 void Player::Render()
 {
-	pWindow->draw(baseSprite);
-	pWindow->draw(gunSprite);
+	pWindow->draw(playerSpr);
 }
 
 void Player::LookAtMouse(RenderWindow& window)
 {
-	Vector2f pos = gunSprite.getPosition();
+	Vector2f pos = playerSpr.getPosition();
 	Vector2i mousePos = Mouse::getPosition(window);
 
 	float dx = pos.x - mousePos.x;
@@ -86,5 +74,5 @@ void Player::LookAtMouse(RenderWindow& window)
 
 	float rotation = (atan2(dy, dx)) * 180 / CONSTANTS::PI;
 
-	gunSprite.setRotation(rotation + CONSTANTS::ROTATION_OFFSET);
+	playerSpr.setRotation(rotation + CONSTANTS::ROTATION_OFFSET);
 }
