@@ -5,7 +5,7 @@
 using namespace std;
 using namespace sf;
 
-int main() 
+int main()
 {
 	RenderWindow window(sf::VideoMode(1200, 800), "Proj1");
 	window.setFramerateLimit(60);
@@ -13,12 +13,12 @@ int main()
 	Game game;
 	game.Init(window);
 
-	while (window.isOpen()) 
+	while (window.isOpen())
 	{
 		Event event;
-		while (window.pollEvent(event)) 
+		while (window.pollEvent(event))
 		{
-			if (event.type == Event::Closed) 
+			if (event.type == Event::Closed)
 			{
 				window.close();
 			}

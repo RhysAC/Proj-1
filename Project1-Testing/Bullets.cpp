@@ -12,12 +12,12 @@ void Bullets::InitBullet(RenderWindow& window, Player& player)
 
 void Bullets::UpdateBullet(vector<Bullets>& bullets)
 {
-	if (Mouse::isButtonPressed(Mouse::Left)) 
+	if (Mouse::isButtonPressed(Mouse::Left))
 	{
 		Shoot(bullets);
 	}
 
-	if (isActive) 
+	if (isActive)
 	{
 		MoveBullet();
 	}
@@ -25,17 +25,17 @@ void Bullets::UpdateBullet(vector<Bullets>& bullets)
 
 void Bullets::RenderBullet()
 {
-	if (isActive) 
+	if (isActive)
 	{
 		mpWindow->draw(bulletShape);
 	}
 }
 
-void Bullets::MoveBullet() 
+void Bullets::MoveBullet()
 {
 	bulletShape.move(currentVel);
 
-	if (bulletShape.getPosition().x > 1200 || bulletShape.getPosition().x < 0) 
+	if (bulletShape.getPosition().x > 1200 || bulletShape.getPosition().x < 0)
 	{
 		isActive = false;
 	}

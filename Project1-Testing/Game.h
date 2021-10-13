@@ -22,5 +22,3 @@ private:
 	vector<Bullets> bullets;
 };
 
-
-

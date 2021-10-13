@@ -17,7 +17,7 @@ public:
 
 	void InitBullet(RenderWindow& window, Player& player);
 	void UpdateBullet(vector<Bullets>& bullets);
-	void RenderBullet();	
+	void RenderBullet();
 	void MoveBullet();
 	void Shoot(vector<Bullets>& bullets);
 

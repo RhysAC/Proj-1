@@ -7,7 +7,7 @@
 using namespace std;
 using namespace sf;
 
-namespace CONSTANTS 
+namespace CONSTANTS
 {
 	const float ROTATION_OFFSET{ 180.f };
 	const float PI{ 3.14159265 };
@@ -16,9 +16,9 @@ namespace CONSTANTS
 	const float SCREEN_OFFSET{ 0.4f };
 }
 
-Player::Player(){}
+Player::Player() {}
 
-void Player::Init(RenderWindow& window) 
+void Player::Init(RenderWindow& window)
 {
 	mousePos = Vector2f(Mouse::getPosition(window));
 	pWindow = &window;
@@ -34,12 +34,12 @@ void Player::Init(RenderWindow& window)
 
 }
 
-void Player::Move(float elapsed) 
+void Player::Move(float elapsed)
 {
 	Vector2f pos = playerSpr.getPosition();
 	FloatRect rect = playerSpr.getGlobalBounds();
 
-	if (Keyboard::isKeyPressed(Keyboard::W)) 
+	if (Keyboard::isKeyPressed(Keyboard::W))
 	{
 		pos.y -= 200.f * elapsed;
 	}
@@ -89,11 +89,11 @@ void Player::Render()
 	pWindow->draw(playerSpr);
 }
 
-void Player::Aim(RenderWindow& window) 
+void Player::Aim(RenderWindow& window)
 {
 	mousePos = Vector2f(Mouse::getPosition(window));
 	Vector2f aimDir = mousePos - playerSpr.getPosition();
-	aimDirNorm = aimDir / (static_cast<float> (sqrt( pow(aimDir.x, 2) + pow(aimDir.y, 2))));
+	aimDirNorm = aimDir / (static_cast<float> (sqrt(pow(aimDir.x, 2) + pow(aimDir.y, 2))));
 }
 
 void Player::LookAtMouse(RenderWindow& window)

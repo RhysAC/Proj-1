@@ -5,9 +5,9 @@
 using namespace std;
 using namespace sf;
 
-Game::Game(){}
+Game::Game() {}
 
-void Game::Init(RenderWindow& window) 
+void Game::Init(RenderWindow& window)
 {
 	player.Init(window);
 

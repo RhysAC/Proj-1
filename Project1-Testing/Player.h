@@ -22,8 +22,6 @@ private:
 
 	Texture playerSprTex;
 	Vector2f mousePos;
-	RenderWindow *pWindow = nullptr;
+	RenderWindow* pWindow = nullptr;
 };
-
-
 
