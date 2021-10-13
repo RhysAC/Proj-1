@@ -1,6 +1,7 @@
 #pragma once
 #include "SFML/Graphics.hpp"
 #include "Player.h"
+#include "Bullets.h"
 
 using namespace std;
 using namespace sf;
@@ -16,11 +17,9 @@ public:
 
 	void Render();
 
-	static float GetElapsedSecs() { return sElapsedSecs.asSeconds(); }
-	static Time sElapsedSecs;
-
 private:
-	Player mPlayer;
+	Player player;
+	vector<Bullets> bullets;
 };
 
 

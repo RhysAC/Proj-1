@@ -108,3 +108,11 @@ void Player::LookAtMouse(RenderWindow& window)
 
 	playerSpr.setRotation(rotation + CONSTANTS::ROTATION_OFFSET);
 }
+
+void Player::Shoot() 
+{
+	if (Mouse::isButtonPressed(Mouse::Left)) 
+	{
+
+	}
+}

@@ -12,17 +12,19 @@ public:
 	void Render();
 	void Update(float elapsed, RenderWindow& window);
 
+	Vector2f aimDirNorm;
+
 private:
 	void Move(float elapsed);
 	void Aim(RenderWindow& window);
 	void LookAtMouse(RenderWindow& window);
+	void Shoot();
 
 	Sprite playerSpr;
 	Texture playerSprTex;
 	Vector2f mousePos;
-	Vector2f aimDirNorm;
 	RenderWindow *pWindow = nullptr;
-
 };
+
 
 
