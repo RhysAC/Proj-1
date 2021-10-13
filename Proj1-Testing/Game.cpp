@@ -13,14 +13,14 @@ void Game::Init(RenderWindow& window)
 
 	Bullets bullet;
 	bullet.InitBullet(window, player);
-	bullets.push_back(Bullets(bullet));
+	bullets.insert(bullets.begin(), 50, bullet);
 }
 
 void Game::Update(float elapsed, RenderWindow& window)
 {
 	player.Update(elapsed, window);
 
-	for (size_t i = 0; i < bullets.size(); i++)
+	for (size_t i = 0; i < bullets.size(); ++i)
 	{
 		bullets[i].UpdateBullet();
 	}
@@ -30,7 +30,7 @@ void Game::Render()
 {
 	player.Render();
 
-	for (size_t i = 0; i < bullets.size(); i++)
+	for (size_t i = 0; i < bullets.size(); ++i)
 	{
 		bullets[i].RenderBullet();
 	}

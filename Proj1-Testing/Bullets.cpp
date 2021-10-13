@@ -12,7 +12,8 @@ void Bullets::InitBullet(RenderWindow& window, Player& player)
 
 void Bullets::UpdateBullet()
 {
-
+	Shoot();
+	MoveBullet();
 }
 
 void Bullets::RenderBullet()
@@ -22,5 +23,14 @@ void Bullets::RenderBullet()
 
 void Bullets::MoveBullet() 
 {
-	
+	bulletShape.move(currentVel);
+}
+
+void Bullets::Shoot()
+{
+	if (Mouse::isButtonPressed(Mouse::Left))
+	{
+		bulletShape.setPosition(mPlayer->playerSpr.getPosition());
+		currentVel = mPlayer->aimDirNorm * maxSpeed;
+	}
 }

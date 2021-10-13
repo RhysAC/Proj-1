@@ -92,7 +92,7 @@ void Player::Render()
 void Player::Aim(RenderWindow& window) 
 {
 	mousePos = Vector2f(Mouse::getPosition(window));
-	Vector2f aimDir = mousePos - playerSpr.getOrigin();
+	Vector2f aimDir = mousePos - playerSpr.getPosition();
 	aimDirNorm = aimDir / (static_cast<float> (sqrt( pow(aimDir.x, 2) + pow(aimDir.y, 2))));
 }
 
@@ -107,12 +107,4 @@ void Player::LookAtMouse(RenderWindow& window)
 	float rotation = (atan2(dy, dx)) * 180 / CONSTANTS::PI;
 
 	playerSpr.setRotation(rotation + CONSTANTS::ROTATION_OFFSET);
-}
-
-void Player::Shoot() 
-{
-	if (Mouse::isButtonPressed(Mouse::Left)) 
-	{
-
-	}
 }

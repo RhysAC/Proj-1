@@ -19,6 +19,7 @@ public:
 	void UpdateBullet();
 	void RenderBullet();	
 	void MoveBullet();
+	void Shoot();
 
 	CircleShape bulletShape;
 	Vector2f currentVel;
