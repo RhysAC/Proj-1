@@ -16,10 +16,10 @@ public:
 	};
 
 	void InitBullet(RenderWindow& window, Player& player);
-	void UpdateBullet();
+	void UpdateBullet(vector<Bullets>& bullets);
 	void RenderBullet();	
 	void MoveBullet();
-	void Shoot();
+	void Shoot(vector<Bullets>& bullets);
 
 	CircleShape bulletShape;
 	Vector2f currentVel;
@@ -28,5 +28,6 @@ public:
 private:
 	RenderWindow* mpWindow = nullptr;
 	Player* mPlayer = nullptr;
+	bool isActive = false;
 };
 

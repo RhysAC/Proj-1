@@ -22,7 +22,7 @@ void Game::Update(float elapsed, RenderWindow& window)
 
 	for (size_t i = 0; i < bullets.size(); ++i)
 	{
-		bullets[i].UpdateBullet();
+		bullets[i].UpdateBullet(bullets);
 	}
 }
 
