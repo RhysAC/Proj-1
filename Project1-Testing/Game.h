@@ -15,10 +15,12 @@ public:
 
 	void Update(float elapsed, RenderWindow& window);
 
-	void Render();
+	void Render(RenderWindow& window);
+	Player player;
+	Bullets bullet;
+	vector<Bullets> bullets;
 
 private:
-	Player player;
-	vector<Bullets> bullets;
+	float timer = 0;
 };
 

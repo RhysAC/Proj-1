@@ -31,7 +31,7 @@ int main()
 
 		game.Update(elapsed, window);
 
-		game.Render();
+		game.Render(window);
 
 		window.display();
 

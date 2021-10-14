@@ -9,25 +9,14 @@ class Bullets
 {
 public:
 	Bullets(float radius = 5.f)
-		: currentVel(0.f, 0.f), maxSpeed(15.f)
+		: currentVel(0.f, 0.f), maxSpeed(30.f)
 	{
 		this->bulletShape.setFillColor(Color::Yellow);
 		this->bulletShape.setRadius(radius);
 	};
 
-	void InitBullet(RenderWindow& window, Player& player);
-	void UpdateBullet(vector<Bullets>& bullets);
-	void RenderBullet();
-	void MoveBullet();
-	void Shoot(vector<Bullets>& bullets);
-
 	CircleShape bulletShape;
 	Vector2f currentVel;
 	float maxSpeed;
-
-private:
-	RenderWindow* mpWindow = nullptr;
-	Player* mPlayer = nullptr;
-	bool isActive = false;
 };
 
