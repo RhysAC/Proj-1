@@ -1,5 +1,6 @@
 #pragma once
 #include "SFML/Graphics.hpp"
+#include "Bullets.h"
 
 using namespace std;
 using namespace sf;
@@ -23,5 +24,9 @@ private:
 	Texture playerSprTex;
 	Vector2f mousePos;
 	RenderWindow* pWindow = nullptr;
+
+	Bullets bullet;
+	vector<Bullets> bullets;
+	float timer = 0;
 };
 

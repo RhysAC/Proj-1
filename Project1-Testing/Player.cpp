@@ -29,7 +29,7 @@ void Player::Init(RenderWindow& window)
 	playerSpr.setScale(0.5, 0.5);
 	IntRect texR(0, 0, 200, 200);
 	playerSpr.setTextureRect(texR);
-	playerSpr.setOrigin(texR.width / 2.f, texR.height / 2.f);
+	playerSpr.setOrigin(150, 150);
 	playerSpr.setPosition(300, 300);
 
 }
@@ -79,14 +79,40 @@ void Player::Move(float elapsed)
 
 void Player::Update(float elapsed, RenderWindow& window)
 {
+	timer += elapsed;
+
 	Aim(window);
 	LookAtMouse(window);
 	Move(elapsed);
+
+	if (Mouse::isButtonPressed(Mouse::Left) && timer > 0.5f)
+	{
+		bullet.bulletShape.setPosition(playerSpr.getPosition());
+		bullet.currentVel = aimDirNorm * bullet.maxSpeed;
+		bullets.push_back(Bullets(bullet));
+		timer = 0;
+	}
+
+	for (size_t i = 0; i < bullets.size(); i++)
+	{
+		bullets[i].bulletShape.move(bullets[i].currentVel);
+
+		if (bullets[i].bulletShape.getPosition().x < 0 || bullets[i].bulletShape.getPosition().x > 1200
+			|| bullets[i].bulletShape.getPosition().y < 0 || bullets[i].bulletShape.getPosition().y > 800)
+		{
+			bullets.erase(bullets.begin() + i);
+		}
+	}
 }
 
 void Player::Render()
 {
 	pWindow->draw(playerSpr);
+
+	for (size_t i = 0; i < bullets.size(); i++)
+	{
+		pWindow->draw(bullets[i].bulletShape);
+	}
 }
 
 void Player::Aim(RenderWindow& window)
