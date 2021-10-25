@@ -1,6 +1,7 @@
 #pragma once
 #include "SFML/Graphics.hpp"
 #include "Player.h"
+#include "Enemy.h"
 
 using namespace std;
 using namespace sf;
@@ -25,5 +26,6 @@ public:
 private:
 	StateMachine mState;
 	Player player;
+	Enemy enemy;
 };
 

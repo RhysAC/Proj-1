@@ -11,6 +11,7 @@ Game::Game()
 void Game::Init(RenderWindow& window)
 {
 	player.Init(window);
+	enemy.Init(window, player);
 	mState = StateMachine::SPLASH_SCREEN;
 }
 
@@ -26,6 +27,7 @@ void Game::Update(float elapsed, RenderWindow& window)
 		break;
 	case StateMachine::PLAY:
 		player.Update(elapsed, window);
+		enemy.Update(elapsed, window);
 		break;
 	}
 }
@@ -39,6 +41,7 @@ void Game::Render(RenderWindow& window)
 		break;
 	case StateMachine::PLAY:
 		player.Render();
+		enemy.Render();
 		break;
 	}
 }
