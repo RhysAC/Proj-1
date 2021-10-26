@@ -19,7 +19,7 @@ public:
 	void Render();
 
 private:
-	void MoveEnemy(float elapsed);
+	void MoveEnemy();
 	//A function to look towards the player
 	void LookAtPlayer();
 

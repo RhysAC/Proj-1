@@ -79,23 +79,34 @@ void Enemy::LookAtPlayer()
 	spr.setRotation(rotation + CONSTANTS::ROTATION_OFFSET);
 }
 
-
-void Enemy::MoveEnemy(float elapsed)
+//A function to move the enemy towards the player
+void Enemy::MoveEnemy()
 {
 	Vector2f dir = GetDirection();
 	Vector2f vel = GetCurrentVel(dir);
 	spr.move(vel);
 }
 
+/* A function that works out which direction the enemy must move to reach the player
+ *IN :
+ *OUT : Vector2f aimDirNorm
+ *PRE_CONDITION : The local pointer to the Player must be working or we wont be able to use it's position
+ *POST_CONDITION : we retrieve a normalized vector pointing towards the player*/
 Vector2f Enemy::GetDirection() 
 {
 	assert(pPlayer);
 	Vector2f aimDirNorm;
 	Vector2f aimDir = pPlayer->spr.getPosition() - spr.getPosition();
+	// N = V / Sqrt(V.x^2 + V.y^2)
 	aimDirNorm = aimDir / (static_cast<float> (sqrt(pow(aimDir.x, 2) + pow(aimDir.y, 2))));
 	return aimDirNorm;
 }
 
+/* A function that determins the rate at which the enemy moves towards the player
+ *IN : Vector2f& dir
+ *OUT : Vector2f currentVel
+ *PRE_CONDITION : dir must have been previously calculated
+ *POST_CONDITION : we retrieve a vector that we can use to move the enemy towards the player*/
 Vector2f Enemy::GetCurrentVel(Vector2f& dir)
 {
 	Vector2f currentVel;
