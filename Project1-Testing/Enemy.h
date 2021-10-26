@@ -19,8 +19,13 @@ public:
 	void Render();
 
 private:
+	void MoveEnemy(float elapsed);
 	//A function to look towards the player
 	void LookAtPlayer();
+
+	Vector2f GetDirection();
+
+	Vector2f GetCurrentVel(Vector2f& dir);
 	//The enemy sprite
 	Sprite spr;
 	//A texture for the Enemy sprite
@@ -29,5 +34,8 @@ private:
 	RenderWindow* pWindow = nullptr;
 	//A local pointer to the Player
 	Player* pPlayer = nullptr;
+
+	const float enemySpeed = 2.f;
+
 };
 

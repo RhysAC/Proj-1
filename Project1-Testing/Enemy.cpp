@@ -49,6 +49,7 @@ void Enemy::Init(RenderWindow& window, Player& player)
 void Enemy::Update(float elapsed, RenderWindow& window)
 {
 	LookAtPlayer();
+	MoveEnemy(elapsed);
 }
 
 /* A function to Render any updates for the Enemy
@@ -76,4 +77,28 @@ void Enemy::LookAtPlayer()
 	float rotation = (atan2(dy, dx)) * 180 / CONSTANTS::PI;
 
 	spr.setRotation(rotation + CONSTANTS::ROTATION_OFFSET);
+}
+
+
+void Enemy::MoveEnemy(float elapsed)
+{
+	Vector2f dir = GetDirection();
+	Vector2f vel = GetCurrentVel(dir);
+	spr.move(vel);
+}
+
+Vector2f Enemy::GetDirection() 
+{
+	assert(pPlayer);
+	Vector2f aimDirNorm;
+	Vector2f aimDir = pPlayer->spr.getPosition() - spr.getPosition();
+	aimDirNorm = aimDir / (static_cast<float> (sqrt(pow(aimDir.x, 2) + pow(aimDir.y, 2))));
+	return aimDirNorm;
+}
+
+Vector2f Enemy::GetCurrentVel(Vector2f& dir)
+{
+	Vector2f currentVel;
+	currentVel = dir * enemySpeed;
+	return currentVel;
 }
