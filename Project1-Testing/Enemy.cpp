@@ -1,7 +1,7 @@
 #include <assert.h>
 #include "Enemy.h"
 #include "SFML/Graphics.hpp"
-
+#include <iostream>
 
 /*
  *IN :
@@ -49,7 +49,7 @@ void Enemy::Init(RenderWindow& window, Player& player)
 void Enemy::Update(float elapsed, RenderWindow& window)
 {
 	LookAtPlayer();
-	MoveEnemy(elapsed);
+	MoveEnemy();
 }
 
 /* A function to Render any updates for the Enemy
@@ -110,6 +110,7 @@ Vector2f Enemy::GetDirection()
 Vector2f Enemy::GetCurrentVel(Vector2f& dir)
 {
 	Vector2f currentVel;
+	Vector2f aimDir = pPlayer->spr.getPosition() - spr.getPosition();
 	currentVel = dir * enemySpeed;
 	return currentVel;
 }

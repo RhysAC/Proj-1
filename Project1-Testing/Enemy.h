@@ -19,12 +19,13 @@ public:
 	void Render();
 
 private:
+	//A function to move the enemy
 	void MoveEnemy();
 	//A function to look towards the player
 	void LookAtPlayer();
-
+	//A function to get the direction the enemy should move
 	Vector2f GetDirection();
-
+	//A function to calculate the rate of movement
 	Vector2f GetCurrentVel(Vector2f& dir);
 	//The enemy sprite
 	Sprite spr;
@@ -34,7 +35,7 @@ private:
 	RenderWindow* pWindow = nullptr;
 	//A local pointer to the Player
 	Player* pPlayer = nullptr;
-
+	//Enemy speed value
 	const float enemySpeed = 2.f;
 
 };
