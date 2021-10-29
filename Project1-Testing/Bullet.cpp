@@ -13,10 +13,10 @@ void Bullet::Init()
 
 void Bullet::Update(vector<Bullet>& bullets)
 {
-	if (alive) 
+	//The bullet is moved in the direction of the normalized vector with it's velocity set
+	for (size_t i = 0; i < bullets.size(); ++i)
 	{
-		//The bullet is moved in the direction of the normalized vector with it's velocity set
-		for (size_t i = 0; i < bullets.size(); ++i)
+		if (bullets[i].alive) 
 		{
 			bullets[i].bulletShape.move(bullets[i].currentVel);
 
@@ -32,9 +32,9 @@ void Bullet::Update(vector<Bullet>& bullets)
 
 void Bullet::Render(RenderWindow& window, vector<Bullet>& bullets)
 {
-	if (alive) 
+	for (size_t i = 0; i < bullets.size(); ++i)
 	{
-		for (size_t i = 0; i < bullets.size(); ++i)
+		if (bullets[i].alive)
 		{
 			window.draw(bullets[i].bulletShape);
 		}
