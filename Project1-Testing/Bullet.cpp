@@ -6,12 +6,7 @@
 using namespace std;
 using namespace sf; 
 
-void Bullet::Init() 
-{
-	alive = false;
-}
-
-void Bullet::Update(vector<Bullet>& bullets)
+void BulletMgr::Update()
 {
 	//The bullet is moved in the direction of the normalized vector with it's velocity set
 	for (size_t i = 0; i < bullets.size(); ++i)
@@ -30,7 +25,7 @@ void Bullet::Update(vector<Bullet>& bullets)
 	}
 }
 
-void Bullet::Render(RenderWindow& window, vector<Bullet>& bullets)
+void BulletMgr::Render(RenderWindow& window)
 {
 	for (size_t i = 0; i < bullets.size(); ++i)
 	{
@@ -38,24 +33,5 @@ void Bullet::Render(RenderWindow& window, vector<Bullet>& bullets)
 		{
 			window.draw(bullets[i].bulletShape);
 		}
-	}
-}
-
-void Bullet::FireBullet(Vector2f& pos, Vector2f& aimDirNorm, vector<Bullet>& bullets)
-{
-	size_t idx = 0;
-	bool found = false;
-	while (idx < bullets.size() && !found)
-	{
-		if (!bullets[idx].alive)
-			found = true;
-		else
-			++idx;
-	}
-	if (idx < bullets.size())
-	{
-		bullets[idx].alive = true;
-		bullets[idx].currentVel = aimDirNorm * maxSpeed;
-		bullets[idx].bulletShape.setPosition(pos);
 	}
 }

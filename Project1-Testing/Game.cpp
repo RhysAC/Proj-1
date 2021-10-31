@@ -45,6 +45,7 @@ void Game::Render(RenderWindow& window)
 	txt.setScale(2, 2);
 	FloatRect fr = txt.getGlobalBounds();
 	txt.setPosition(window.getSize().x / 2.f - fr.width / 2, window.getSize().y / 2.f - fr.height / 2);
+
 	switch (mState)
 	{
 	case StateMachine::SPLASH_SCREEN:

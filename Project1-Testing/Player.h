@@ -40,6 +40,8 @@ private:
 	*POST_CONDITION : The player will move smoothly using the elapsed time as a buffer, They will be confined to the screen */
 	void Move(float elapsed);
 
+	void FireBullet(sf::Vector2f& pos, sf::Vector2f& aimDirNorm);
+
 	//Player sprite texture
 	sf::Texture sprTex;
 	//mouse position 
@@ -48,10 +50,8 @@ private:
 	sf::RenderWindow* pWindow = nullptr;
 	//The aim direction normalized
 	sf::Vector2f aimDirNorm;
-	//The initial bullet object
-	Bullet bullet;
-	//A vector to be populated with bullets
-	std::vector<Bullet> bullets;
+	//The object to manage our bullets
+	BulletMgr bulletMgr;
 	//Track the elapsed time versus the time since the last gunshot
 	float timer = 0;
 	float fireRate = 0.3f;

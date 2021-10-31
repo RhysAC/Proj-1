@@ -29,8 +29,6 @@ void Player::Init(RenderWindow& window)
 	spr.setTextureRect(texR);
 	spr.setOrigin(150, 150);
 	spr.setPosition(300, 300);
-	bullet.Init();
-	bullets.insert(bullets.begin(), 50, bullet);
 }
 
 void Player::Move(float elapsed)
@@ -77,6 +75,17 @@ void Player::Move(float elapsed)
 	spr.setPosition(pos);
 }
 
+void Player::FireBullet(Vector2f& pos, Vector2f& aimDirNorm) 
+{
+	Bullet* b = bulletMgr.NewBullet();
+	if (b) 
+	{
+		b->alive = true;
+		b->currentVel = aimDirNorm * b->maxSpeed;
+		b->bulletShape.setPosition(pos);
+	}
+}
+
 void Player::Update(float elapsed, RenderWindow& window)
 {
 	//We use this to establish a fire rate for the player
@@ -91,15 +100,15 @@ void Player::Update(float elapsed, RenderWindow& window)
 	//If we choose to fire, set the bullet to the players position and add another one to the vector
 	if (Mouse::isButtonPressed(Mouse::Left) && timer > fireRate)
 	{
-		bullet.FireBullet(pos, aimDirNorm, bullets);
+		FireBullet(pos, aimDirNorm);
 		timer = 0;
 	}
 
-	bullet.Update(bullets);
+	bulletMgr.Update();
 }
 
 void Player::Render(RenderWindow& window)
 {
 	pWindow->draw(spr);
-	bullet.Render(window, bullets);
+	bulletMgr.Render(window);
 }
