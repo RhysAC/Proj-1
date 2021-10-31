@@ -49,6 +49,14 @@ void Enemy::MoveEnemy()
 	Vector2f pos = spr.getPosition();
 	Vector2f otherPos = pPlayer->spr.getPosition();
 	Vector2f dir = Getdirection(pos, otherPos);
+	Vector2f aimDir = otherPos - pos;
+	float length = GetVectorLength(pos, otherPos);
+	if (length < 100)
+	{
+		enemySpeed = 0.f;
+	}
+	else
+		enemySpeed = 2.f;
 	Vector2f vel = GetCurrentVel(dir, enemySpeed);
 	spr.move(vel);
 }

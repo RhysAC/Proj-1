@@ -32,3 +32,12 @@ float LookAt(Vector2f& pos, Vector2f& otherPos)
 	float rotation = (atan2(dy, dx)) * 180 / CONSTANTS::PI;
 	return rotation;
 }
+
+float GetVectorLength(Vector2f& pos, Vector2f& otherPos) 
+{
+	Vector2f aimDir = otherPos - pos;
+	float length = aimDir.x * aimDir.x + aimDir.y * aimDir.y;
+	length = sqrtf(length);
+	aimDir /= length;
+	return length;
+}

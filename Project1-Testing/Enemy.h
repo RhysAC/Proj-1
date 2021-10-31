@@ -43,7 +43,7 @@ private:
 	//A local pointer to the Player
 	Player* pPlayer = nullptr;
 	//Enemy speed value
-	const float enemySpeed = 2.f;
+	float enemySpeed = 2.f;
 
 };
 
