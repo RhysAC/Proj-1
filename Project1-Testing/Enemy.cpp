@@ -34,7 +34,7 @@ void Enemy::Update(float elapsed, RenderWindow& window)
 {
 	Vector2f pos = spr.getPosition();
 	Vector2f otherPos = pPlayer->spr.getPosition();
-	float rotation = LookAt(pos , otherPos);
+	float rotation = LookAt(pos, otherPos);
 	spr.setRotation(rotation + CONSTANTS::ROTATION_OFFSET);
 	MoveEnemy();
 }

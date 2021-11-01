@@ -18,7 +18,7 @@ public:
 	bool alive = false;
 };
 
-class BulletMgr 
+class BulletMgr
 {
 public:
 	BulletMgr()
@@ -30,7 +30,7 @@ public:
 
 	void Render(sf::RenderWindow& window);
 
-	Bullet* NewBullet() 
+	Bullet* NewBullet()
 	{
 		size_t i = 0;
 		while (i < bullets.size() && bullets[i].alive == true) ++i;

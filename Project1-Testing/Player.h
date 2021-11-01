@@ -21,7 +21,7 @@ public:
 	*OUT :
 	*PRE_CONDITION : An elapsed time and render window must have been set, there must also be a valid bullets vector to use
 	*POST_CONDITION : The player will update it's logic and update the bullets accordingly */
-	void Update(float elapsed, sf::RenderWindow& window); 
+	void Update(float elapsed, sf::RenderWindow& window);
 
 	/* A function to Render changes to the player and the bullets belonging to it
 	*IN :RenderWindow& window
@@ -32,6 +32,8 @@ public:
 
 	//Player sprite, kept public to access it's position and other functions from the enemy 
 	sf::Sprite spr;
+	//Ammo counter
+	int ammo;
 
 private:
 	/* A function to move the player

@@ -29,6 +29,7 @@ void Player::Init(RenderWindow& window)
 	spr.setTextureRect(texR);
 	spr.setOrigin(150, 150);
 	spr.setPosition(300, 300);
+	ammo = 7;
 }
 
 void Player::Move(float elapsed)
@@ -75,10 +76,10 @@ void Player::Move(float elapsed)
 	spr.setPosition(pos);
 }
 
-void Player::FireBullet(Vector2f& pos, Vector2f& aimDirNorm) 
+void Player::FireBullet(Vector2f& pos, Vector2f& aimDirNorm)
 {
 	Bullet* b = bulletMgr.NewBullet();
-	if (b) 
+	if (b)
 	{
 		b->alive = true;
 		b->currentVel = aimDirNorm * b->maxSpeed;
@@ -98,10 +99,16 @@ void Player::Update(float elapsed, RenderWindow& window)
 	Move(elapsed);
 
 	//If we choose to fire, set the bullet to the players position and add another one to the vector
-	if (Mouse::isButtonPressed(Mouse::Left) && timer > fireRate)
+	if (Mouse::isButtonPressed(Mouse::Left) && timer > fireRate && ammo > 0)
 	{
 		FireBullet(pos, aimDirNorm);
+		ammo--;
 		timer = 0;
+	}
+
+	if (Keyboard::isKeyPressed(Keyboard::R)) 
+	{
+		ammo = 7;
 	}
 
 	bulletMgr.Update();

@@ -4,14 +4,14 @@
 #include "SFML/Graphics.hpp"
 
 using namespace std;
-using namespace sf; 
+using namespace sf;
 
 void BulletMgr::Update()
 {
 	//The bullet is moved in the direction of the normalized vector with it's velocity set
 	for (size_t i = 0; i < bullets.size(); ++i)
 	{
-		if (bullets[i].alive) 
+		if (bullets[i].alive)
 		{
 			bullets[i].bulletShape.move(bullets[i].currentVel);
 

@@ -33,7 +33,7 @@ float LookAt(Vector2f& pos, Vector2f& otherPos)
 	return rotation;
 }
 
-float GetVectorLength(Vector2f& pos, Vector2f& otherPos) 
+float GetVectorLength(Vector2f& pos, Vector2f& otherPos)
 {
 	Vector2f aimDir = otherPos - pos;
 	float length = aimDir.x * aimDir.x + aimDir.y * aimDir.y;

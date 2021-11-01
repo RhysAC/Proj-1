@@ -15,10 +15,10 @@ sf::Vector2f Getdirection(sf::Vector2f& pos, sf::Vector2f& otherPos);
 *POST_CONDITION : we retrieve a vector that we can use to move the object*/
 sf::Vector2f GetCurrentVel(sf::Vector2f& dir, float speed);
 
-/* A function to make a given object face another 
+/* A function to make a given object face another
 *IN : Vector2f& pos, Vector2f& otherPos
 *OUT : float rotation
-*PRE_CONDITION : 2 valid positions must be passed in 
+*PRE_CONDITION : 2 valid positions must be passed in
 *POST_CONDITION : The object will rotate to face the other object using the extracted float*/
 float LookAt(sf::Vector2f& pos, sf::Vector2f& otherPos);
 
@@ -28,4 +28,3 @@ float LookAt(sf::Vector2f& pos, sf::Vector2f& otherPos);
 *PRE_CONDITION : 2 valid positions must be passed in
 *POST_CONDITION : We will retrieve a float for the length of the vector*/
 float GetVectorLength(sf::Vector2f& pos, sf::Vector2f& otherPos);
-

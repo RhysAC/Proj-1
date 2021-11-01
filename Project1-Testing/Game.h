@@ -2,6 +2,7 @@
 #include "SFML/Graphics.hpp"
 #include "Player.h"
 #include "Enemy.h"
+#include "Ui.h"
 
 class Game
 {
@@ -9,8 +10,8 @@ public:
 	//Enum class dictating what current stage that game is at
 	enum class StateMachine {
 		WAITING_INIT,
-		SPLASH_SCREEN,		
-		PLAY			
+		SPLASH_SCREEN,
+		PLAY
 	};
 	//Default constructor
 	Game();
@@ -43,9 +44,12 @@ private:
 	Player player;
 	//The main enemy object
 	Enemy enemy;
+	//The gun Ui
+	GunUi gunUi;
+	GunUi bulletUi;
+	//Temp Background
+	Ui backGrd;
 	//FOnt used for the main menu
 	sf::Font font;
-
-	std::vector<GameObject> objects;
 };
 

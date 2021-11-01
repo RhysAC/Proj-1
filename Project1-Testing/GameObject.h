@@ -6,14 +6,16 @@ class GameObject
 public:
 	GameObject() {};
 
-	void Update();
+	void Update() {};
 
-	void Render();
+	void Render() {};
 
 private:
 	sf::Sprite sprite;
 
 	sf::Texture spriteTex;
+
+	sf::Vector2f pos;
 
 	float speed;
 };
