@@ -1,8 +1,9 @@
 #pragma once
 #include "SFML/Graphics.hpp"
 #include "Bullet.h"
+#include "GameObject.h"
 
-class Player
+class Player : public GameObject
 {
 public:
 	//Default constructor
@@ -40,6 +41,11 @@ private:
 	*POST_CONDITION : The player will move smoothly using the elapsed time as a buffer, They will be confined to the screen */
 	void Move(float elapsed);
 
+	/* A function to fire a bullet from the players current location
+	 *IN : Vector2f& pos, Vector2f& aimDirNorm
+	*OUT :
+	*PRE_CONDITION : both the passed in vectors must be valid and the player must be active in the scene
+	*POST_CONDITION : A bullet will spawn at the player's location and move accordingly */
 	void FireBullet(sf::Vector2f& pos, sf::Vector2f& aimDirNorm);
 
 	//Player sprite texture

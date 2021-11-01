@@ -1,4 +1,5 @@
 #include "Game.h"
+#include "GameObject.h"
 #include "SFML/Graphics.hpp"
 #include <assert.h>
 #include <sstream>

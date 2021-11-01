@@ -45,5 +45,7 @@ private:
 	Enemy enemy;
 	//FOnt used for the main menu
 	sf::Font font;
+
+	std::vector<GameObject> objects;
 };
 

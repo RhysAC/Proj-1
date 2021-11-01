@@ -1,7 +1,8 @@
 #pragma once
 #include "SFML/Graphics.hpp"
+#include "GameObject.h"
 
-class Bullet
+class Bullet : public GameObject
 {
 public:
 	Bullet(float radius = 5.f)

@@ -1,9 +1,10 @@
 #pragma once
 #include "Player.h"
+#include "GameObject.h"
 #include "SFML/Graphics.hpp"
 
 //Enemy class derived from the Player as they share the same characteristics
-class Enemy : public Player
+class Enemy : public GameObject
 {
 public:
 	//Default constructor
