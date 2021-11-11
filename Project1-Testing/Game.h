@@ -3,6 +3,8 @@
 #include "Player.h"
 #include "Enemy.h"
 #include "Ui.h"
+#include "GameObject.h"
+#include "Utils.h"
 
 class Game
 {
@@ -38,18 +40,23 @@ public:
 	void Render(sf::RenderWindow& window);
 
 private:
+	std::vector<GameObject> objects;
 	//The saved current state
 	StateMachine mState;
+	//A main gameobject to update the vector containing every object in the scene
+	GameObject obj;
 	//The main player object
 	Player player;
 	//The main enemy object
 	Enemy enemy;
+	//The object to manage our bullets
+	BulletMgr bulletMgr;
 	//The gun Ui
 	GunUi gunUi;
 	GunUi bulletUi;
 	//Temp Background
 	Ui backGrd;
-	//FOnt used for the main menu
+	//Font used for the main menu
 	sf::Font font;
 };
 

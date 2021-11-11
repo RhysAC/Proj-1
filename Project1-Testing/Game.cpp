@@ -1,5 +1,4 @@
 #include "Game.h"
-#include "GameObject.h"
 #include "SFML/Graphics.hpp"
 #include <assert.h>
 #include <sstream>
@@ -15,6 +14,7 @@ Game::Game()
 
 void Game::Init(RenderWindow& window)
 {
+
 	if (!font.loadFromFile("data/fonts/Blacklisted.ttf"))
 		assert(false);
 
@@ -36,6 +36,11 @@ void Game::Init(RenderWindow& window)
 
 	player.Init(window);
 	enemy.Init(window, player);
+
+	objects.insert(objects.begin(), 1, player);
+	objects.insert(objects.begin(), 1, enemy);
+	objects.insert(objects.end(), bulletMgr.bullets.begin(), bulletMgr.bullets.end());
+
 	mState = StateMachine::SPLASH_SCREEN;
 }
 
@@ -50,7 +55,13 @@ void Game::Update(float elapsed, RenderWindow& window)
 		}
 		break;
 	case StateMachine::PLAY:
-		player.Update(elapsed, window);
+		for (size_t i = 0; i < objects.size(); ++i) 
+		{
+			objects[i].Update(objects);
+		}
+
+		bulletMgr.Update();
+		player.Update(elapsed, window, bulletMgr);
 		enemy.Update(elapsed, window);
 		bulletUi.UpdateMag(player.ammo);
 		break;
@@ -72,6 +83,7 @@ void Game::Render(RenderWindow& window)
 		break;
 	case StateMachine::PLAY:
 		backGrd.Render(window);
+		bulletMgr.Render(window);
 		player.Render(window);
 		enemy.Render();
 		bulletUi.Render(window);

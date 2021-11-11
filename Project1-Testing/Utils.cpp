@@ -41,3 +41,11 @@ float GetVectorLength(Vector2f& pos, Vector2f& otherPos)
 	aimDir /= length;
 	return length;
 }
+
+bool CircleToCircle(const Vector2f& pos1, const Vector2f& pos2, float minDist)
+{
+	float dist = (pos1.x - pos2.x) * (pos1.x - pos2.x) +
+		(pos1.y - pos2.y) * (pos1.y - pos2.y);
+	dist = sqrtf(dist);
+	return dist <= minDist;
+}

@@ -1,22 +1,33 @@
 #pragma once
 #include "SFML/Graphics.hpp"
+#include "Utils.h"
 
 class GameObject
 {
 public:
 	GameObject() {};
 
-	void Update() {};
+	void Init();
 
-	void Render() {};
+	void Update(std::vector<GameObject>& objects);
+
+	void Render();
+
+	void CheckCollision(std::vector<GameObject>& objects);
+
+	virtual void Hit(GameObject& other) {};
+
+	sf::Sprite spr;
+
+	bool active;
 
 private:
-	sf::Sprite sprite;
 
 	sf::Texture spriteTex;
 
-	sf::Vector2f pos;
+	bool colliding;
 
 	float speed;
+	float radius = 100.f;
 };
 

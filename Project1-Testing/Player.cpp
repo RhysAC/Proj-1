@@ -2,7 +2,6 @@
 #include <math.h>
 #include "Player.h"
 #include "SFML/Graphics.hpp"
-#include "Utils.h"
 
 using namespace std;
 using namespace sf;
@@ -76,18 +75,23 @@ void Player::Move(float elapsed)
 	spr.setPosition(pos);
 }
 
-void Player::FireBullet(Vector2f& pos, Vector2f& aimDirNorm)
+void Player::FireBullet(Vector2f& pos, Vector2f& aimDirNorm, BulletMgr& bulletMgr)
 {
 	Bullet* b = bulletMgr.NewBullet();
 	if (b)
 	{
-		b->alive = true;
+		b->active = true;
 		b->currentVel = aimDirNorm * b->maxSpeed;
-		b->bulletShape.setPosition(pos);
+		b->spr.setPosition(pos);
 	}
 }
 
-void Player::Update(float elapsed, RenderWindow& window)
+void Player::Hit(GameObject& other) 
+{
+
+}
+
+void Player::Update(float elapsed, RenderWindow& window, BulletMgr& bulletMgr)
 {
 	//We use this to establish a fire rate for the player
 	timer += elapsed;
@@ -101,7 +105,7 @@ void Player::Update(float elapsed, RenderWindow& window)
 	//If we choose to fire, set the bullet to the players position and add another one to the vector
 	if (Mouse::isButtonPressed(Mouse::Left) && timer > fireRate && ammo > 0)
 	{
-		FireBullet(pos, aimDirNorm);
+		FireBullet(pos, aimDirNorm, bulletMgr);
 		ammo--;
 		timer = 0;
 	}
@@ -110,12 +114,10 @@ void Player::Update(float elapsed, RenderWindow& window)
 	{
 		ammo = 7;
 	}
-
-	bulletMgr.Update();
 }
 
 void Player::Render(RenderWindow& window)
 {
+	if(active)
 	pWindow->draw(spr);
-	bulletMgr.Render(window);
 }

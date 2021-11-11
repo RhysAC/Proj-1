@@ -1,6 +1,5 @@
 #include <assert.h>
 #include "Enemy.h"
-#include "Utils.h"
 #include "SFML/Graphics.hpp"
 
 using namespace std;
@@ -28,6 +27,7 @@ void Enemy::Init(RenderWindow& window, Player& player)
 	spr.setTextureRect(texR);
 	spr.setOrigin(100, 100);
 	spr.setPosition(800, 600);
+	active = true;
 }
 
 void Enemy::Update(float elapsed, RenderWindow& window)
@@ -41,7 +41,8 @@ void Enemy::Update(float elapsed, RenderWindow& window)
 
 void Enemy::Render()
 {
-	pWindow->draw(spr);
+	if(active)
+		pWindow->draw(spr);
 }
 
 void Enemy::MoveEnemy()
@@ -59,4 +60,9 @@ void Enemy::MoveEnemy()
 		enemySpeed = 2.f;
 	Vector2f vel = GetCurrentVel(dir, enemySpeed);
 	spr.move(vel);
+}
+
+void Enemy::Hit(GameObject& object) 
+{
+	active = false;
 }

@@ -1,5 +1,6 @@
 #pragma once
 #include "Player.h"
+#include "Utils.h"
 #include "GameObject.h"
 #include "SFML/Graphics.hpp"
 
@@ -31,12 +32,15 @@ public:
 	*POST_CONDITION : Any active enemy will show on the current render window */
 	void Render();
 
+	//Check if the enemy is active
+	bool active = false;
+
 private:
 	//A function to move the enemy towards the player using a given direction
 	void MoveEnemy();
 
-	//The enemy sprite
-	sf::Sprite spr;
+	void Hit(GameObject& other);
+
 	//A texture for the Enemy sprite
 	sf::Texture sprTex;
 	//A local pointer to the main Render window

@@ -2,6 +2,7 @@
 #include "SFML/Graphics.hpp"
 #include "Bullet.h"
 #include "GameObject.h"
+#include "Utils.h"
 
 class Player : public GameObject
 {
@@ -21,7 +22,7 @@ public:
 	*OUT :
 	*PRE_CONDITION : An elapsed time and render window must have been set, there must also be a valid bullets vector to use
 	*POST_CONDITION : The player will update it's logic and update the bullets accordingly */
-	void Update(float elapsed, sf::RenderWindow& window);
+	void Update(float elapsed, sf::RenderWindow& window, BulletMgr& bulletMgr);
 
 	/* A function to Render changes to the player and the bullets belonging to it
 	*IN :RenderWindow& window
@@ -30,8 +31,6 @@ public:
 	*POST_CONDITION : All changes will be drawn to the current window */
 	void Render(sf::RenderWindow& window);
 
-	//Player sprite, kept public to access it's position and other functions from the enemy 
-	sf::Sprite spr;
 	//Ammo counter
 	int ammo;
 
@@ -48,7 +47,9 @@ private:
 	*OUT :
 	*PRE_CONDITION : both the passed in vectors must be valid and the player must be active in the scene
 	*POST_CONDITION : A bullet will spawn at the player's location and move accordingly */
-	void FireBullet(sf::Vector2f& pos, sf::Vector2f& aimDirNorm);
+	void FireBullet(sf::Vector2f& pos, sf::Vector2f& aimDirNorm, BulletMgr& bulletMgr);
+
+	void Hit(GameObject& other);
 
 	//Player sprite texture
 	sf::Texture sprTex;
@@ -58,8 +59,6 @@ private:
 	sf::RenderWindow* pWindow = nullptr;
 	//The aim direction normalized
 	sf::Vector2f aimDirNorm;
-	//The object to manage our bullets
-	BulletMgr bulletMgr;
 	//Track the elapsed time versus the time since the last gunshot
 	float timer = 0;
 	float fireRate = 0.3f;

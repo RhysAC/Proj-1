@@ -1,21 +1,21 @@
 #pragma once
 #include "SFML/Graphics.hpp"
 #include "GameObject.h"
+#include "Utils.h"
 
 class Bullet : public GameObject
 {
 public:
-	Bullet(float radius = 5.f)
+	Bullet()
 		: currentVel(0.f, 0.f), maxSpeed(30.f)
-	{
-		this->bulletShape.setFillColor(sf::Color::Yellow);
-		this->bulletShape.setRadius(radius);
-	};
+	{};
 
-	sf::CircleShape bulletShape;
+	void Init();
+	void Hit(GameObject& other);
+	sf::Texture sprTex;
 	sf::Vector2f currentVel;
 	float maxSpeed;
-	bool alive = false;
+	bool active = false;
 };
 
 class BulletMgr
@@ -23,7 +23,10 @@ class BulletMgr
 public:
 	BulletMgr()
 	{
-		bullets.insert(bullets.begin(), 50, Bullet());
+		bullets.insert(bullets.begin(), 20, Bullet());
+
+		for (size_t i = 0; i < bullets.size(); ++i)
+			bullets[i].Init();
 	};
 
 	void Update();
@@ -33,10 +36,10 @@ public:
 	Bullet* NewBullet()
 	{
 		size_t i = 0;
-		while (i < bullets.size() && bullets[i].alive == true) ++i;
+		while (i < bullets.size() && bullets[i].active == true) ++i;
 		if (i >= bullets.size())
 			return nullptr;
-		bullets[i].alive = true;
+		bullets[i].active = true;
 		return &bullets[i];
 	}
 

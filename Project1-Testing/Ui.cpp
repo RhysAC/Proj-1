@@ -35,7 +35,7 @@ void GunUi::Init(Texture& tex)
 	sprite.setPosition(CONSTANTS::UI_SCREEN_OFFSET_X, CONSTANTS::UI_SCREEN_OFFSET_Y);
 }
 
-void GunUi::UpdateMag(int ammo)
+void GunUi::UpdateMag(int& ammo)
 {
 	for (size_t i = 0; i < bullets.size(); ++i)
 	{
@@ -44,7 +44,7 @@ void GunUi::UpdateMag(int ammo)
 			//Go through the vector and update accordingly so that the bullets in the hud corrolate with the ammo count
 			bullets[i].sprite.setPosition(hudPos[i].posX, hudPos[i].posY);
 
-			if (ammo == 7)
+			if (i+1 <= ammo)
 				bullets[i].active = true;
 			else
 				bullets[i].active = false;
@@ -56,7 +56,7 @@ void GunUi::Render(RenderWindow& window)
 {
 	for (size_t i = 0; i < bullets.size(); ++i)
 	{
-		if (active == true) 
+		if (bullets[i].active == true) 
 		{
 			window.draw(bullets[i].sprite);
 		}
