@@ -55,11 +55,7 @@ void Game::Update(float elapsed, RenderWindow& window)
 		}
 		break;
 	case StateMachine::PLAY:
-		for (size_t i = 0; i < objects.size(); ++i) 
-		{
-			objects[i].Update(objects);
-		}
-
+		CheckCollision(objects);
 		bulletMgr.Update();
 		player.Update(elapsed, window, bulletMgr);
 		enemy.Update(elapsed, window);
@@ -91,3 +87,32 @@ void Game::Render(RenderWindow& window)
 		break;
 	}
 }
+
+void Game::CheckCollision(vector<GameObject>& objects)
+{
+	if (objects.size() > 1)
+	{
+		for (size_t i = 0; i < objects.size(); ++i)
+		{
+			GameObject& a = objects[i];
+			if (a.active)
+			{
+				if (i < (objects.size() - 1))
+					for (size_t ii = i + 1; ii < (objects.size()); ++ii)
+					{
+						GameObject& b = objects[ii];
+						if (b.active)
+						{
+							if (CircleToCircle(a.spr.getPosition(), b.spr.getPosition(), a.radius + b.radius))
+							{
+								a.colliding = true;
+								b.colliding = true;
+								a.Hit(b);
+								b.Hit(a);
+							}
+						}
+					}
+			}
+		}
+	}
+};

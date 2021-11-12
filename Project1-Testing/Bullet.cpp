@@ -21,6 +21,7 @@ void Bullet::Init()
 void Bullet::Hit(GameObject& other)
 {
 	active = false;
+	other.active = false;
 }
 
 void BulletMgr::Update()
@@ -28,7 +29,6 @@ void BulletMgr::Update()
 	//The bullet is moved in the direction of the normalized vector with it's velocity set
 	for (size_t i = 0; i < bullets.size(); ++i)
 	{
-
 		if (bullets[i].active)
 		{
 			bullets[i].spr.move(bullets[i].currentVel);

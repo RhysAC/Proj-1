@@ -31,6 +31,8 @@ public:
 	*POST_CONDITION : All changes will be drawn to the current window */
 	void Render(sf::RenderWindow& window);
 
+	void Hit(GameObject& other);
+
 	//Ammo counter
 	int ammo;
 
@@ -48,8 +50,6 @@ private:
 	*PRE_CONDITION : both the passed in vectors must be valid and the player must be active in the scene
 	*POST_CONDITION : A bullet will spawn at the player's location and move accordingly */
 	void FireBullet(sf::Vector2f& pos, sf::Vector2f& aimDirNorm, BulletMgr& bulletMgr);
-
-	void Hit(GameObject& other);
 
 	//Player sprite texture
 	sf::Texture sprTex;

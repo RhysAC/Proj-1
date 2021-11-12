@@ -32,14 +32,11 @@ public:
 	*POST_CONDITION : Any active enemy will show on the current render window */
 	void Render();
 
-	//Check if the enemy is active
-	bool active = false;
+	void Hit(GameObject& other);
 
 private:
 	//A function to move the enemy towards the player using a given direction
 	void MoveEnemy();
-
-	void Hit(GameObject& other);
 
 	//A texture for the Enemy sprite
 	sf::Texture sprTex;

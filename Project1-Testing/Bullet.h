@@ -15,7 +15,6 @@ public:
 	sf::Texture sprTex;
 	sf::Vector2f currentVel;
 	float maxSpeed;
-	bool active = false;
 };
 
 class BulletMgr

@@ -28,6 +28,7 @@ void Player::Init(RenderWindow& window)
 	spr.setTextureRect(texR);
 	spr.setOrigin(150, 150);
 	spr.setPosition(300, 300);
+	active = true;
 	ammo = 7;
 }
 

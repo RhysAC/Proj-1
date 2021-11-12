@@ -13,21 +13,20 @@ public:
 
 	void Render();
 
-	void CheckCollision(std::vector<GameObject>& objects);
-
 	virtual void Hit(GameObject& other) {};
 
 	sf::Sprite spr;
 
-	bool active;
+	bool active = false;
+
+	bool colliding;
+
+	float radius = 100.f;
 
 private:
 
 	sf::Texture spriteTex;
 
-	bool colliding;
-
 	float speed;
-	float radius = 100.f;
 };
 
