@@ -28,6 +28,7 @@ void Enemy::Init(RenderWindow& window, Player& player)
 	spr.setOrigin(100, 100);
 	spr.setPosition(800, 600);
 	active = true;
+	tag = "Enemy";
 }
 
 void Enemy::Update(float elapsed, RenderWindow& window)
@@ -64,5 +65,4 @@ void Enemy::MoveEnemy()
 
 void Enemy::Hit(GameObject& object) 
 {
-	active = false;
 }

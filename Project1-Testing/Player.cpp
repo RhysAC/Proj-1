@@ -30,6 +30,7 @@ void Player::Init(RenderWindow& window)
 	spr.setPosition(300, 300);
 	active = true;
 	ammo = 7;
+	tag = "Player";
 }
 
 void Player::Move(float elapsed)
@@ -82,6 +83,7 @@ void Player::FireBullet(Vector2f& pos, Vector2f& aimDirNorm, BulletMgr& bulletMg
 	if (b)
 	{
 		b->active = true;
+		b->spr.setRotation(rotation + CONSTANTS::ROTATION_OFFSET);
 		b->currentVel = aimDirNorm * b->maxSpeed;
 		b->spr.setPosition(pos);
 	}
@@ -99,7 +101,7 @@ void Player::Update(float elapsed, RenderWindow& window, BulletMgr& bulletMgr)
 	mousePos = Vector2f(Mouse::getPosition(window));
 	Vector2f pos = spr.getPosition();
 	aimDirNorm = Getdirection(pos, mousePos);
-	float rotation = LookAt(pos, mousePos);
+	rotation = LookAt(pos, mousePos);
 	spr.setRotation(rotation + CONSTANTS::ROTATION_OFFSET);
 	Move(elapsed);
 

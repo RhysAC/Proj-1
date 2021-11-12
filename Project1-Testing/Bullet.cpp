@@ -16,15 +16,25 @@ void Bullet::Init()
 	IntRect texR(0, 0, 100, 100);
 	spr.setTextureRect(texR);
 	spr.setOrigin(50, 50);
+	tag = "Bullet";
 }
 
 void Bullet::Hit(GameObject& other)
 {
-	active = false;
-	other.active = false;
+	if (other.tag == "Player") 
+	{
+		other.active = true;
+		active = true;
+	}
+
+	if (other.tag == "Enemy")
+	{
+		other.active = false;
+		active = false;
+	}
 }
 
-void BulletMgr::Update()
+void BulletMgr::Update(RenderWindow& window)
 {
 	//The bullet is moved in the direction of the normalized vector with it's velocity set
 	for (size_t i = 0; i < bullets.size(); ++i)

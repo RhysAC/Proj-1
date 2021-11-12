@@ -39,10 +39,8 @@ public:
 	*POST_CONDITION : All changes will be drawn to the current window depending on the current state */
 	void Render(sf::RenderWindow& window);
 
-	void CheckCollision(std::vector<GameObject>& objects);
-
 private:
-	std::vector<GameObject> objects;
+	std::vector<GameObject*> objects;
 	//The saved current state
 	StateMachine mState;
 	//The main player object

@@ -61,6 +61,7 @@ private:
 	sf::Vector2f aimDirNorm;
 	//Track the elapsed time versus the time since the last gunshot
 	float timer = 0;
+	float rotation;
 	float fireRate = 0.3f;
 	//Player movement speed, const as it doesn't need to change
 	const float playerSpeed = 200.f;

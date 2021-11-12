@@ -7,7 +7,7 @@ class Bullet : public GameObject
 {
 public:
 	Bullet()
-		: currentVel(0.f, 0.f), maxSpeed(30.f)
+		: currentVel(0.f, 0.f), maxSpeed(50.f)
 	{};
 
 	void Init();
@@ -28,7 +28,7 @@ public:
 			bullets[i].Init();
 	};
 
-	void Update();
+	void Update(sf::RenderWindow& window);
 
 	void Render(sf::RenderWindow& window);
 

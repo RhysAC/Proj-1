@@ -1,6 +1,7 @@
 #pragma once
 #include "SFML/Graphics.hpp"
 #include "Utils.h"
+#include <string>
 
 class GameObject
 {
@@ -9,24 +10,26 @@ public:
 
 	void Init();
 
-	void Update(std::vector<GameObject>& objects);
+	void Update(std::vector<GameObject*>& objects);
 
 	void Render();
 
-	virtual void Hit(GameObject& other) {};
+	void CheckCollision(std::vector<GameObject*>& objects);
+
+	virtual void Hit(GameObject& other) {
+		speed = speed;
+	};
 
 	sf::Sprite spr;
 
 	bool active = false;
 
-	bool colliding;
-
-	float radius = 100.f;
-
+	std::string tag; 
 private:
 
 	sf::Texture spriteTex;
 
 	float speed;
+	float radius = 10.f;
 };
 
