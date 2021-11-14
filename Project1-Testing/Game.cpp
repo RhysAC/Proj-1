@@ -35,10 +35,15 @@ void Game::Init(RenderWindow& window)
 	backGrd.Init(backgrdTex);
 
 	player.Init(window);
-	enemy.Init(window, player);
+	
+	for (size_t i = 0; i < enemyMgr.enemies.size(); ++i) 
+	{
+		enemyMgr.enemies[i].Init(player);
+	}
 
 	objects.push_back(&player);
-	objects.push_back(&enemy);
+	for (Enemy& e : enemyMgr.enemies)
+		objects.push_back(&e);
 	for (Bullet& b : bulletMgr.bullets)
 		objects.push_back(&b);
 
@@ -65,7 +70,7 @@ void Game::Update(float elapsed, RenderWindow& window)
 
 		bulletMgr.Update(window);
 		player.Update(elapsed, window, bulletMgr);
-		enemy.Update(elapsed, window);
+		enemyMgr.Update(elapsed, window);
 		bulletUi.UpdateMag(player.ammo);
 		break;
 	}
@@ -88,7 +93,7 @@ void Game::Render(RenderWindow& window)
 		backGrd.Render(window);
 		bulletMgr.Render(window);
 		player.Render(window);
-		enemy.Render();
+		enemyMgr.Render(window);
 		bulletUi.Render(window);
 		gunUi.Render(window);
 		break;

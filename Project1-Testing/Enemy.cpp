@@ -14,9 +14,8 @@ namespace CONSTANTS
 	const float SCREEN_OFFSET{ 0.4f };
 }
 
-void Enemy::Init(RenderWindow& window, Player& player)
+void Enemy::Init(Player& player)
 {
-	pWindow = &window;
 	pPlayer = &player;
 	if (!sprTex.loadFromFile("data/Temp_Enemy.png"))
 		assert(false);
@@ -27,23 +26,8 @@ void Enemy::Init(RenderWindow& window, Player& player)
 	spr.setTextureRect(texR);
 	spr.setOrigin(100, 100);
 	spr.setPosition(800, 600);
-	active = true;
+	active = false;
 	tag = "Enemy";
-}
-
-void Enemy::Update(float elapsed, RenderWindow& window)
-{
-	Vector2f pos = spr.getPosition();
-	Vector2f otherPos = pPlayer->spr.getPosition();
-	float rotation = LookAt(pos, otherPos);
-	spr.setRotation(rotation + CONSTANTS::ROTATION_OFFSET);
-	MoveEnemy();
-}
-
-void Enemy::Render()
-{
-	if(active)
-		pWindow->draw(spr);
 }
 
 void Enemy::MoveEnemy()
@@ -63,6 +47,56 @@ void Enemy::MoveEnemy()
 	spr.move(vel);
 }
 
-void Enemy::Hit(GameObject& object) 
+void Enemy::Hit(GameObject& object)
 {
+}
+
+void Enemy::ResetEnemy() 
+{
+	if (colliding == false) 
+	{
+		active = true;
+		spr.setPosition(GetRandPos());
+	}
+	else 
+	{
+		active = false;
+	}
+}
+
+void EnemyMgr::Update(float elapsed, RenderWindow& window)
+{
+	spawnTimer += elapsed;
+	if (spawnTimer > 3) 
+	{
+		SpawnEnemy();
+		spawnTimer = 0;
+	}
+
+	for (size_t i = 0; i < enemies.size(); ++i) 
+	{
+		Vector2f pos = enemies[i].spr.getPosition();
+		Vector2f otherPos = enemies[i].pPlayer->spr.getPosition();
+		float rotation = LookAt(pos, otherPos);
+		enemies[i].spr.setRotation(rotation + CONSTANTS::ROTATION_OFFSET);
+		enemies[i].MoveEnemy();
+	}
+}
+
+void EnemyMgr::Render(RenderWindow& window)
+{
+	for (size_t i = 0; i < enemies.size(); ++i) 
+	{
+		if (enemies[i].active)
+			window.draw(enemies[i].spr);
+	}
+}
+
+void EnemyMgr::SpawnEnemy()
+{
+	Enemy* e = NewEnemy();
+	if (e)
+	{
+		e->ResetEnemy();
+	}
 }

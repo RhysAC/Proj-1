@@ -36,6 +36,8 @@ void GameObject::CheckCollision(vector<GameObject*>& objects)
 						{
 							if (CircleToCircle(a.spr.getPosition(), b.spr.getPosition(), a.radius + b.radius))
 							{
+								a.colliding;
+								b.colliding;
 								a.Hit(b);
 								b.Hit(a);
 							}

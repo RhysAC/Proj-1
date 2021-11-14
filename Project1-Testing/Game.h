@@ -49,6 +49,8 @@ private:
 	Enemy enemy;
 	//The object to manage our bullets
 	BulletMgr bulletMgr;
+	//The object to manage our enemies 
+	EnemyMgr enemyMgr;
 	//The gun Ui
 	GunUi gunUi;
 	GunUi bulletUi;

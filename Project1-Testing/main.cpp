@@ -1,4 +1,5 @@
 #include <assert.h>
+#include <ctime>
 #include "SFML/Graphics.hpp"
 #include "Game.h"
 
@@ -7,6 +8,7 @@ using namespace sf;
 
 int main()
 {
+	srand(time(NULL));
 	RenderWindow window(sf::VideoMode(1200, 800), "Proj1");
 	window.setFramerateLimit(60);
 	Clock clock;

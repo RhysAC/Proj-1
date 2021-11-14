@@ -23,6 +23,7 @@ public:
 	sf::Sprite spr;
 
 	bool active = false;
+	bool colliding = false;
 
 	std::string tag; 
 private:
@@ -30,6 +31,6 @@ private:
 	sf::Texture spriteTex;
 
 	float speed;
-	float radius = 10.f;
+	float radius = 20.f;
 };
 

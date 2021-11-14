@@ -49,3 +49,9 @@ bool CircleToCircle(const Vector2f& pos1, const Vector2f& pos2, float minDist)
 	dist = sqrtf(dist);
 	return dist <= minDist;
 }
+
+Vector2f GetRandPos() 
+{
+	Vector2f randPos(rand() %1200, rand() %800);
+	return randPos;
+}
