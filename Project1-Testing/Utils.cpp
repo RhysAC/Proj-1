@@ -52,6 +52,30 @@ bool CircleToCircle(const Vector2f& pos1, const Vector2f& pos2, float minDist)
 
 Vector2f GetRandPos() 
 {
-	Vector2f randPos(rand() %1200, rand() %800);
+	int randomDetermin = rand() % 3;
+	int randX;
+	int randY;
+	if (randomDetermin == 0) 
+	{
+		randX = -200 + rand() % 1200;
+		randY = -200 + rand() % 150;
+	}
+	else if(randomDetermin == 1)
+	{
+		randX =  1200 + rand() % 150;
+		randY =  0 + rand() % 800;
+	}
+	else if (randomDetermin == 2) 
+	{
+		randX = -200 + rand() % 1200;
+		randY = 800 + rand() % 150;
+	}
+	else if(randomDetermin == 3)
+	{
+		randX = -200 + rand() % 150;
+		randY = 0 + rand() % 800;
+	}
+
+	Vector2f randPos(randX, randY);
 	return randPos;
 }

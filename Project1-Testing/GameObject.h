@@ -28,8 +28,6 @@ public:
 	std::string tag; 
 private:
 
-	sf::Texture spriteTex;
-
 	float speed;
 	float radius = 20.f;
 };

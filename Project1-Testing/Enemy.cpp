@@ -56,7 +56,7 @@ void Enemy::ResetEnemy()
 	if (colliding == false) 
 	{
 		active = true;
-		spr.setPosition(GetRandPos());
+		spr.setPosition(GetRandPosOffScreen());
 	}
 	else 
 	{
@@ -67,7 +67,7 @@ void Enemy::ResetEnemy()
 void EnemyMgr::Update(float elapsed, RenderWindow& window)
 {
 	spawnTimer += elapsed;
-	if (spawnTimer > 3) 
+	if (spawnTimer > 2) 
 	{
 		SpawnEnemy();
 		spawnTimer = 0;
