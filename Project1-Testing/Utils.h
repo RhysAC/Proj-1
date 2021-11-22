@@ -36,4 +36,4 @@ float GetVectorLength(sf::Vector2f& pos, sf::Vector2f& otherPos);
  *POST_CONDITION :  a boolean will be returned stating the distance is less than the minimum distance*/
 bool CircleToCircle(const sf::Vector2f& pos1, const sf::Vector2f& pos2, float minDist);
 
-sf::Vector2f GetRandPos();
+sf::Vector2f GetRandPosOffScreen();

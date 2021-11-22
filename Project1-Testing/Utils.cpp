@@ -50,7 +50,7 @@ bool CircleToCircle(const Vector2f& pos1, const Vector2f& pos2, float minDist)
 	return dist <= minDist;
 }
 
-Vector2f GetRandPos() 
+Vector2f GetRandPosOffScreen() 
 {
 	int randomDetermin = rand() % 3;
 	int randX;
